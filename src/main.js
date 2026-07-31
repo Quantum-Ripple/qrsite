@@ -1,9 +1,13 @@
-
 import { createApp } from 'vue'
+import { createUnhead, headSymbol } from '@unhead/vue'
 import App from './App.vue'
 import router from './routers'
 import './style.css'
 
-createApp(App)
-  .use(router)
-  .mount('#app')
+const app = createApp(App)
+const head = createUnhead()
+
+app.provide(headSymbol, head)
+app.use(router)
+
+app.mount('#app')

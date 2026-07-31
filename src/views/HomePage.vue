@@ -31,7 +31,7 @@
 
       <h2 class="text-5xl font-bold leading-tight tracking-tight md:text-6xl">
         Solving problems<br>
-        through technology.
+        through technology
       </h2>
 
       <p class="mt-10 max-w-3xl text-xl leading-9 text-gray-600">
@@ -157,6 +157,24 @@
 
     </section>
 
+    <!-- Focus Areas -->
+<section class="mx-auto max-w-4xl px-6 py-20">
+
+<h3 class="text-3xl font-semibold tracking-tight">
+  Our areas of focus
+</h3>
+
+
+<p class="mt-8 text-lg leading-9 text-gray-600">
+  Quantum Ripple develops technology solutions across education,
+  community development, business operations, and digital transformation.
+  Our work includes software systems, mobile applications, SaaS platforms,
+  learning platforms, and custom digital solutions designed around real needs.
+</p>
+
+
+</section>
+
     <!-- Contact -->
 
     <section
@@ -201,7 +219,7 @@
       <div class="mx-auto flex max-w-6xl flex-col justify-between gap-3 px-6 py-8 text-sm text-gray-500 md:flex-row">
 
         <p>
-          © {{ year }} Quantum Ripple.
+          © {{ year }} Quantum Ripple LTD.
         </p>
 
         <p>
@@ -216,5 +234,147 @@
 </template>
 
 <script setup>
+import { useHead } from '@unhead/vue'
+
 const year = new Date().getFullYear()
+
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+
+  "name": "Quantum Ripple",
+
+  "url": "https://quantumripple.co.ke",
+
+  "description":
+    "Quantum Ripple is a community-driven software initiative in Kenya building digital solutions for communities, organizations and businesses.",
+
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Machakos, Kenya"
+  },
+  "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Machakos",
+  "addressCountry": "KE"
+},
+
+  "email": [
+    "hello@quantumripple.co.ke",
+    "quantumrippleltd@gmail.com"
+  ],
+
+  "telephone": [
+    "+254714474770",
+    "+254796663544"
+  ],
+
+  "areaServed": "Kenya"
+}
+
+
+useHead({
+
+  title:
+    'Quantum Ripple | Community-Driven Software Initiative in Kenya',
+
+
+  meta: [
+
+    {
+      name: 'description',
+      content:
+        'Quantum Ripple is a community-driven software initiative in Kenya bringing together experienced software engineers to build digital solutions that strengthen communities, empower organizations, and improve lives.'
+    },
+
+    {
+      name: 'keywords',
+      content:
+        'software company Kenya, software developers Kenya, community technology, software engineering, SaaS, school management systems, web development Kenya, mobile app development Kenya, digital transformation, Quantum Ripple'
+    },
+
+
+    {
+      property: 'og:title',
+      content:
+        'Quantum Ripple | Building Technology for Communities'
+    },
+
+
+    {
+      property: 'og:description',
+      content:
+        'A community-driven software initiative solving real-world challenges through technology.'
+    },
+
+
+    {
+      property: 'og:type',
+      content: 'website'
+    },
+
+
+    {
+      property: 'og:url',
+      content:
+        'https://quantumripple.co.ke'
+    },
+
+    {
+      property: 'og:site_name',
+      content: 'Quantum Ripple'
+    },
+
+    {
+      property: 'og:image',
+      content: 'https://quantumripple.co.ke/5.PNG'
+    },
+
+    {
+      property: 'og:image:alt',
+      content: 'Quantum Ripple software services for Kenyan communities and organizations.'
+    },
+
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+
+    {
+      name: 'twitter:image',
+      content: 'https://quantumripple.co.ke/5.PNG'
+    },
+
+    {
+      name: 'twitter:image:alt',
+      content: 'Quantum Ripple branding image for community-driven software solutions.'
+    },
+
+    {
+      name: 'twitter:title',
+      content:
+        'Quantum Ripple'
+    },
+
+
+    {
+      name: 'twitter:description',
+      content:
+        'Building technology for communities.'
+    }
+
+  ],
+
+
+  script: [
+
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify(schema)
+    }
+
+  ]
+
+})
 </script>
