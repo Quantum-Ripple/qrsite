@@ -1,126 +1,39 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Auth from '../api/Auth'
-import LoginPage from '../views/Login.vue'
-import DashboardLayout from '../layouts/DashboardLayout.vue'
-import Dashboard from '../views/Dashboard.vue'
-import StudentsPage from '../views/Students.vue'
-import AssignmentsPage from '../views/Assignments.vue'
-import AttendancePage from '../views/Attendance.vue'
-import Settings from '../views/Settings.vue'
-import GradesPage from '../views/Grades.vue'
-import AnnouncementsPage from '../views/Announcements.vue'
-import Finance from '../views/Finance.vue'
-
-import FeeStatements from '../components/Finance/FeeStatements.vue'
-import FeeStructure from '../components/Finance/FeeStructure.vue'
-import FeeSummary from '../components/Finance/FeeSummary.vue'
-import OnlinePayment from '../components/Finance/OnlinePayment.vue'
-
-
-
+import HomePage from '../views/HomePage.vue'
 
 const routes = [
   {
     path: '/',
-    redirect: '/login', // Explicitly redirect root to login
+    name: 'Home',
+    component: HomePage,
   },
   {
-    path: '/login',
-    name: 'login',
-    component: LoginPage,
-    meta: { public: true },
+    path: '/contact',
+    name: 'Contact',
+    component: HomePage,
+    meta: { scrollTo: 'contact' },
   },
   {
-    path: '/dashboard',
-    component: DashboardLayout,
-    children: [
-      {
-        path: '',
-        name: 'Dashboard',
-        component: Dashboard,
-      },
-      {
-        path: 'students',
-        name: 'StudentsPage',
-        component: StudentsPage,
-      },
-      {
-        path: 'finance',
-        name: 'Finance',
-        redirect: { name: 'FeeSummary' }, // default subpage
-        children: [
-          {
-            path: 'overview',
-            name: 'FeeSummary',
-            component: FeeSummary,
-          },
-          {
-            path: 'fee-structure',
-            name: 'FeeStructure',
-            component: FeeStructure,
-          },
-          {
-            path: 'fee-statement',
-            name: 'FeeStatements',
-            component: FeeStatements,
-          },
-          {
-            path: 'online-payment',
-            name: 'OnlinePayment',
-            component: OnlinePayment,
-          },
-        ],
-      },
-      
-      {
-        path: 'attendance',
-        name: 'AttendancePage',
-        component: AttendancePage,
-      },
-     
-      
-      {
-        path: 'grades',
-        name: 'GradesPage',
-        component: GradesPage,
-      },
-      
-      {
-        path: 'announcements',
-        name: 'AnnouncementsPage',
-        component: AnnouncementsPage,
-      },
-      {
-        path: 'assignments',
-        name: 'AssignmentsPage',
-        component: AssignmentsPage,
-      },
-    
-      {
-        path: 'settings',
-        name: 'Settings',
-        component: Settings,
-      },
-    ],
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-})
-
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = Auth.isAuthenticated()
-
-   if (!to.meta.public && !isAuthenticated) {
-    next('/login') }
-
-    if (to.path === '/login' && isAuthenticated) {
-    next('/dashboard') 
-  } else {
-    next()
-  }
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.meta.scrollTo) {
+      return {
+        el: `#${to.meta.scrollTo}`,
+        behavior: 'smooth',
+      }
+    }
+    return { top: 0 }
+  },
 })
 
 export default router
