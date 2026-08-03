@@ -195,12 +195,12 @@
 
         <p>
           <strong>Email</strong><br>
-          hello@quantumripple.co.ke | quantumrippleltd@gmail.com
+          hello@quantumripple.co.ke | info@quantumripple.co.ke | contact@quantumripple.co.ke
         </p>
 
         <p>
           <strong>Phone</strong><br>
-          +254 714 474 770 | +254 796 663 544
+          +254 753 842 309 | +254 796 663 544
         </p>
 
         <p>
@@ -262,11 +262,12 @@ const schema = {
 
   "email": [
     "hello@quantumripple.co.ke",
-    "quantumrippleltd@gmail.com"
+    "info@quantumripple.co.ke",
+    "contact@quantumripple.co.ke"
   ],
 
   "telephone": [
-    "+254714474770",
+    "+254753842309",
     "+254796663544"
   ],
 
